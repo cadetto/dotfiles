@@ -5,6 +5,7 @@ sxhkd &
 pgrep -x sxhkd > /dev/null || sxhkd &
 mpd
 
+#testing
 #Auto init software
 feh --bg-fill ~/bg/bg-forest.jpg
 ~/.config/polybar/launch.sh
