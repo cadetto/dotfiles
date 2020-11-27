@@ -1,0 +1,263 @@
+;:set syn=dosini
+
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+black = ${xrdb:color0}
+dark-gray = ${xrdb:color8}
+dark-red = ${xrdb:color1}
+red = ${xrdb:color9}
+dark-green = ${xrdb:color2}
+green = ${xrdb:color10}
+dark-yellow = ${xrdb:color3}
+yellow = ${xrdb:color11}
+dark-blue = ${xrdb:color4}
+blue = ${xrdb:color12}
+dark-magenta = ${xrdb:color5}
+magenta = ${xrdb:color13}
+dark-cyan = ${xrdb:color6}
+cyan = ${xrdb:color14}
+light-gray = ${xrdb:color7}
+white = ${xrdb:color15}
+primary = ${xrdb:color10}
+secondary = ${xrdb:color11}
+alert = ${xrdb:color1}
+background-alt = #4e4e4e
+foreground-alt = #4e4e4e
+
+[bar/bar]
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2 
+line-color = ${colors.foreground}
+
+border-left-size = 0
+border-right-size = 0
+border-top-size = 0
+border-bottom-size = 0
+border-color = #00ffffff
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "Fira Code:size=8;2"
+font-1 = "FontAwesome:size=8;2"
+font-2 = "Hack:size=8;2"
+font-3 = "FontAwesome:size=8;2"
+
+
+modules-right = keyboard separator network separator volume separator cpu 
+modules-center = date
+modules-left = bspwm separator title
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state> <label-mode>
+pin-workspaces= false
+
+label-focused = %icon%
+label-focused-background = ${colors.dark-gray}
+label-focused-foreground = ${colors.foreground}
+label-focused-padding =2 
+
+label-unfocused = %icon%
+label-unfocused-padding = 2 
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground-alt}
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 2 
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2 
+
+label-empty =
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2 
+
+ws-icon-0 = 1;1:
+ws-icon-1 = 2;2:
+ws-icon-2 = 3;3:
+ws-icon-3 = 4;4:
+ws-icon-4 = 5;5:
+ws-icon-5 = 6;6:
+ws-icon-default = 
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %d-%m-%Y"
+date-alt = " %A, %B %-d %Y"
+
+time = %H:%M
+time-alt = %l:%M %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+
+label = %date% %time%
+label-foreground = ${colors.foreground}
+
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> 
+format-volume-foreground = ${colors.cyan}
+format-volume-padding = 2
+label-volume =  %{F-}%percentage:3%%
+
+format-muted-padding = 2 
+format-muted = <label-muted>
+label-muted = "  "
+label-muted-foreground = ${colors.dark-red}
+
+format-padding = 2
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix-foreground = ${colors.cyan}
+format-prefix-background = ${colors.background}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label = %percentage_used%%
+label-padding = 1 
+format-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = 
+format-prefix-foreground = ${colors.green}
+format-prefix-background = ${colors.background}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label = %percentage%%
+label-padding = 1 
+format-padding = 2
+
+[module/keyboard]
+type = internal/xkeyboard
+
+; Available tags:
+;   <label-layout> (default)
+;   <label-indicator> (default)
+format = %{A1:~/.bin/toggkbl:} %{F-}<label-layout> <label-indicator>%{A}
+format-spacing = 0
+;format-underline = ${colors.white}
+
+; Available tokens:
+;   %layout%
+;   %name%
+;   %number%
+; Default: %layout%
+label-layout = %layout%
+format-padding = 2
+
+; Available tokens:
+;   %name%
+; Default: %name%
+label-indicator = %name%
+label-indicator-padding = 0
+
+[module/network]
+type = internal/network
+interface = wlan0
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+format-connected-padding = 2
+format-disconnected-padding = 2
+;format-connected-underline = ${colors.white}
+;format-disconnected-underline = ${colors.white}
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected =   
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = %signal:3%%
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+; Default: (none)
+label-disconnected = %{F#928374} %{F-}none
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %linkspeed% [wired]
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-1 = 📶
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+[module/title]
+type = internal/xwindow
+label = %title:0:20:...%
+label-padding = 2
+label-maxlen = 75
+label-foreground = ${colors.dark-yellow}
+label-background = ${colors.background}
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.foreground} 
+
+
+
+; vim:ft=dosini5

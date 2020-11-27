@@ -1,0 +1,14 @@
+{
+  "suggest.noselect": false,
+  "html.autoClosingTags": true,
+  "emmet.includeLanguages": { "javascript": "react-javascript" },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ]
+}
