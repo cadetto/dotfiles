@@ -10,3 +10,5 @@ Personal linux configs
 On screenshot:
 - Vim with nord theme
 - Pfetch
+- Font = Cascadia Code
+- Panel = Polybar
